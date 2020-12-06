@@ -76,6 +76,24 @@ public class Restaurant {
     public List <Item> getItems() {
         return menu;
     }
+
+    public int totalOrderValue(List<String> myOrder) throws invalidOrderException{
+
+        int totalCost = 0;
+        if (myOrder.size()!=0) {
+            for (String orderItem : myOrder) {
+                Item item = findItemByName ( orderItem );
+                totalCost += item.getPrice ();
+            }
+        }
+        else {throw new invalidOrderException ( totalCost );}
+
+
+        if (totalCost<=0){
+            throw new invalidOrderException ( totalCost );}
+
+        return totalCost;
+    }
 }
 
 

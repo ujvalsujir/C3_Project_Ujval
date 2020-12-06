@@ -30,8 +30,9 @@ class RestaurantTest {
 
         restaurant.addToMenu ( "Sweet corn soup", 119 );
         restaurant.addToMenu ( "Vegetable lasagne", 269 );
-
-
+        restaurant.addToMenu ( "Idli", 50 );
+        restaurant.addToMenu ( "vada", 40 );
+        restaurant.addToMenu ( "Coffee", 0 );
     }
 
     @Test
