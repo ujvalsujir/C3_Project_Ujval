@@ -1,4 +1,3 @@
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +8,7 @@ public class Restaurant {
     public LocalTime openingTime;
     public LocalTime closingTime;
     private List<Item> menu = new ArrayList<Item>();
+    private List<String> myOrder=new ArrayList <> ();
 
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
@@ -31,10 +31,7 @@ public class Restaurant {
 
     public List<Item> getMenu() {
         if (isRestaurantOpen ()==true) {   //Checks if the restaurant is open
-            for (Item item: menu ){        //Populates the array with the list of items
-                return getItems ();
-            }
-
+               return getItems ();
         }
         return null;
     }
@@ -77,4 +74,32 @@ public class Restaurant {
         return menu;
     }
 
+
+
+
+    public int totalOrderValue(List<String> myOrder) throws invalidOrderException{
+
+        int totalCost = 0;
+        if (myOrder.size()!=0) {
+            for (String orderItem : myOrder) {
+                Item item = findItemByName ( orderItem );
+                totalCost += item.getPrice ();
+            }
+        }
+        else {throw new invalidOrderException ( totalCost );}
+
+
+        if (totalCost<=0){
+            throw new invalidOrderException ( totalCost );}
+
+        return totalCost;
+    }
 }
+
+
+
+
+
+
+
+
