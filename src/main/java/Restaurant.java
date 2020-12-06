@@ -7,8 +7,8 @@ public class Restaurant {
     private String location;
     public LocalTime openingTime;
     public LocalTime closingTime;
-    private List<Item> menu = new ArrayList<Item>();
-    private List<String> myOrder=new ArrayList <> ();
+    private List <Item> menu = new ArrayList <Item> ();
+    private List <String> myOrder = new ArrayList <> ();
 
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
@@ -18,42 +18,44 @@ public class Restaurant {
     }
 
     public boolean isRestaurantOpen() {
-        if ((getCurrentTime ().isAfter ( openingTime )) && (getCurrentTime ().isBefore ( closingTime ))){
+        if (( getCurrentTime ().isAfter ( openingTime ) ) && ( getCurrentTime ().isBefore ( closingTime ) )) {
 
             return true;
+        } else {
+            return false;
         }
-
-        else {return false;}
     }
 
-    public LocalTime getCurrentTime(){ return  LocalTime.now(); }
+    public LocalTime getCurrentTime() {
+        return LocalTime.now ();
+    }
 
 
-    public List<Item> getMenu() {
+    public List <Item> getMenu() {
 
-               return getItems (); //Menu will still be displayed even if the restaurant is closed
-        }
+        return getItems (); //Menu will still be displayed even if the restaurant is closed
+    }
 
-    private Item findItemByName(String itemName){
-        for(Item item: menu) {
-            if(item.getName().equals(itemName))
+    private Item findItemByName(String itemName) {
+        for (Item item : menu) {
+            if (item.getName ().equals ( itemName ))
                 return item;
         }
         return null;
     }
 
     public void addToMenu(String name, int price) {
-        Item newItem = new Item(name,price);
-        menu.add(newItem);
+        Item newItem = new Item ( name, price );
+        menu.add ( newItem );
     }
-    
+
     public void removeFromMenu(String itemName) throws itemNotFoundException {
 
-        Item itemToBeRemoved = findItemByName(itemName);
+        Item itemToBeRemoved = findItemByName ( itemName );
         if (itemToBeRemoved == null)
-            throw new itemNotFoundException(itemName);
+            throw new itemNotFoundException ( itemName );
 
-        menu.remove(itemToBeRemoved);
+        menu.remove ( itemToBeRemoved );
     }
 
     // Commented out since this part of the code will not be required for the current requirement
@@ -71,31 +73,15 @@ public class Restaurant {
         return name;
     }
 
-    public List<Item> getItems() {
+    public List <Item> getItems() {
         return menu;
     }
-
-
-
-
-    public int totalOrderValue(List<String> myOrder) throws invalidOrderException{
-
-        int totalCost = 0;
-        if (myOrder.size()!=0) {
-            for (String orderItem : myOrder) {
-                Item item = findItemByName ( orderItem );
-                totalCost += item.getPrice ();
-            }
-        }
-        else {throw new invalidOrderException ( totalCost );}
-
-
-        if (totalCost<=0){
-            throw new invalidOrderException ( totalCost );}
-
-        return totalCost;
-    }
 }
+
+
+
+
+
 
 
 
