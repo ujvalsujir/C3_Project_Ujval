@@ -30,11 +30,9 @@ public class Restaurant {
 
 
     public List<Item> getMenu() {
-        if (isRestaurantOpen ()==true) {   //Checks if the restaurant is open
-               return getItems ();
+
+               return getItems (); //Menu will still be displayed even if the restaurant is closed
         }
-        return null;
-    }
 
     private Item findItemByName(String itemName){
         for(Item item: menu) {
@@ -57,14 +55,17 @@ public class Restaurant {
 
         menu.remove(itemToBeRemoved);
     }
-    public void displayDetails(){
+
+    // Commented out since this part of the code will not be required for the current requirement
+    // Can be used when this code coverage is extended to new set of requirements
+    /*public void displayDetails(){
         System.out.println("Restaurant:"+ name + "\n"
                 +"Location:"+ location + "\n"
                 +"Opening time:"+ openingTime +"\n"
                 +"Closing time:"+ closingTime +"\n"
                 +"Menu:"+"\n"+getMenu());
 
-    }
+    }*/
 
     public String getName() {
         return name;
