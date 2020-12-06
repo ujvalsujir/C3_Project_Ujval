@@ -30,7 +30,7 @@ class RestaurantTest {
 
         restaurant.addToMenu ( "Sweet corn soup", 119 );
         restaurant.addToMenu ( "Vegetable lasagne", 269 );
-      
+
 
     }
 
@@ -97,5 +97,40 @@ class RestaurantTest {
 
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    public void Order_without_items_Should_throw_invalidOrderException() throws invalidOrderException{
+
+        List<String> myOrder=new ArrayList <> ();
+
+
+        assertThrows(invalidOrderException.class,
+                ()->restaurant.totalOrderValue (myOrder));
+    }
+
+    @Test
+    public void Total_Order_Value_LessThanOrEqualToZero_Should_Throw_InvalidOrderException() throws invalidOrderException{
+
+        List<String> myOrder=new ArrayList <> ();
+        myOrder.add ("Coffee");
+
+
+
+        assertThrows(invalidOrderException.class,
+                ()->restaurant.totalOrderValue (myOrder));
+    }
+
+
+
+    @Test
+    public void Selecting_Item_from_menu_Should_give_the_total_Cost() throws invalidOrderException{
+
+        List<String> myOrder=new ArrayList <> ();
+        myOrder.add ("Idli");
+        myOrder.add ("vada");
+        int orderValue= restaurant.totalOrderValue ( myOrder);
+
+        assertEquals (90, orderValue  );
+    }
 
 }
